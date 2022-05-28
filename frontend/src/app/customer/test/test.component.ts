@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, Input, OnInit } from '@angular/core'
 import { from, of, zip } from 'rxjs';
 import { groupBy, mergeMap, toArray } from 'rxjs/operators';
 
@@ -23,17 +23,17 @@ export class TestComponent implements OnInit {
     ];
     //emit each person
     from(people)
-  .pipe(
-    groupBy(
-      person => person.age,
-      p => p.name
-    ),
-    mergeMap(group => zip(of(group.key), group.pipe(toArray())))
-  )
-  .subscribe(console.log);
+      .pipe(
+        groupBy(
+          person => person.age,
+          p => p.name
+        ),
+        mergeMap(group => zip(of(group.key), group.pipe(toArray())))
+      )
+      .subscribe(console.log);
 
-  
+
   }
-  
+
 
 }
