@@ -1,7 +1,9 @@
 package com.movieticket.backend.controller;
 
+import com.movieticket.backend.entity.Cinema;
 import com.movieticket.backend.entity.User;
 import com.movieticket.backend.repository.UserRepository;
+import com.movieticket.backend.services.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -19,6 +21,9 @@ import java.util.Optional;
 public class TestController {
 	@Autowired
 	UserRepository userRepository;
+
+	@Autowired
+	UserServices services;
 	@GetMapping("/all")
 	public String allAccess() {
 		return "Public Content.";
@@ -38,9 +43,8 @@ public class TestController {
 
 	@GetMapping("/admin")
 	@PreAuthorize("hasRole('ADMIN')")
-	public List<User> listUser(){
-		List<User> user = userRepository.findAll();
-		return user;
+	public String admintorAccess() {
+		return "Admin Board.";
 	}
 
 }

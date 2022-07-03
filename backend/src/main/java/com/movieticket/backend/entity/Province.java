@@ -1,22 +1,28 @@
 package com.movieticket.backend.entity;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.*;
+
+import java.util.Collection;
+import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class Province {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    @OneToMany(fetch = FetchType.EAGER,targetEntity = Cinema.class,cascade = CascadeType.ALL)
+    @JoinColumn(name = "province_id", referencedColumnName = "id")
+    private List<Cinema> cinemas;
+
+
 }   
