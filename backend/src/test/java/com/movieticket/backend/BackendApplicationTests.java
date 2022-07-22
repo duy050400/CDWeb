@@ -1,34 +1,39 @@
 package com.movieticket.backend;
 
-import java.util.ArrayList;
-import java.util.List;
 
-import com.movieticket.backend.entity.Cinema;
-import com.movieticket.backend.repository.CinemaRepository;
+import com.movieticket.backend.entity.MovieShowing;
+import com.movieticket.backend.entity.MovieTicket;
+import com.movieticket.backend.entity.User;
+import com.movieticket.backend.repository.*;
+import com.movieticket.backend.services.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.movieticket.backend.entity.Province;
-import com.movieticket.backend.repository.ProvinceRepository;
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootTest
 class BackendApplicationTests {
-	@Autowired
-	CinemaRepository cinemaRepository;
+    @Autowired
+    UserService userService;
 
-	@Autowired
-	ProvinceRepository provinceRepository;
+    @Autowired
+    MovieTicketRepo movieTicketRepo;
 
-//	@Test
-//	void tes1() {
-//		System.out.println(cinemaRepository.findAll());
-//	}
-	@Test
-	void tes2() {
-		List<Province> list = provinceRepository.findAll();
-		System.out.println(list);
-	}
+    @Autowired
+    UserRepository userRepository;
 
+
+    @Test
+    void tes1() {
+
+        System.out.println(userService.movieSeatSold(1));
+
+
+    }
 
 }
+
+
+

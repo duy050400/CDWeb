@@ -1,28 +1,27 @@
 package com.movieticket.backend.entity;
 
-
-import javax.persistence.*;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
-import java.util.Collection;
-import java.util.List;
+import javax.persistence.*;
 import java.util.Set;
 
-@Data
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 @ToString
 public class Province {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
     private String name;
-    @OneToMany(fetch = FetchType.EAGER,targetEntity = Cinema.class,cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, targetEntity = Cinema.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "province_id", referencedColumnName = "id")
-    private List<Cinema> cinemas;
+    @JsonIgnoreProperties(value = "province", allowSetters = true)
+    @ToString.Exclude
+    private Set<Cinema> cinemas;
 
 
-}   
+}

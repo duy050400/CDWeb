@@ -1,24 +1,21 @@
 package com.movieticket.backend.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Data
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 @ToString
-public class Room  {
+public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private int room;
-
+    private int id;
+    private String room_name;
 }

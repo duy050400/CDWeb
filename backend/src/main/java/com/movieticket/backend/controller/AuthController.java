@@ -1,23 +1,16 @@
 package com.movieticket.backend.controller;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import com.movieticket.backend.common.ERole;
 import com.movieticket.backend.common.JwtUtils;
-import com.movieticket.backend.dto.JwtResponse;
-import com.movieticket.backend.dto.LoginRequest;
-import com.movieticket.backend.dto.MessageResponse;
-import com.movieticket.backend.dto.SignupRequest;
+import com.movieticket.backend.dto.reponse.JwtResponse;
+import com.movieticket.backend.dto.request.LoginRequest;
+import com.movieticket.backend.dto.reponse.MessageResponse;
+import com.movieticket.backend.dto.request.SignupRequest;
 import com.movieticket.backend.entity.Role;
 import com.movieticket.backend.entity.User;
 import com.movieticket.backend.repository.RoleRepository;
 import com.movieticket.backend.repository.UserRepository;
 import com.movieticket.backend.services.UserDetailsImpl;
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -26,11 +19,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -53,11 +47,12 @@ public class AuthController {
 
     @PostMapping("/signin")
     public ResponseEntity<?> login(@Validated @RequestBody LoginRequest loginRequest) {
-        
+
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
 
-        SecurityContextHolder.getContext().setAuthentication(authentication);;
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        ;
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         String jwt = jwtUtils.generateJwtToken(authentication);
 
@@ -86,9 +81,9 @@ public class AuthController {
                     .body(new MessageResponse("Error: Email is already in use!"));
         }
 
-        User user = new User(   signUpRequest.getUsername(),
-                                signUpRequest.getEmail(),
-                                encoder.encode(signUpRequest.getPassword()));
+        User user = new User(signUpRequest.getUsername(),
+                signUpRequest.getEmail(),
+                encoder.encode(signUpRequest.getPassword()));
 
         Set<String> asignRoles = signUpRequest.getRole();
         Set<Role> roles = new HashSet<>();

@@ -1,28 +1,45 @@
 package com.movieticket.backend.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.util.Date;
+import javax.persistence.*;
+import java.sql.Date;
+import java.sql.Time;
 
-@Data
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 @ToString
-
 public class MovieShowing {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private Long id_movie;
-    private Long id_cinema;
-    private String time;
+    private int id;
+
+
+    @ManyToOne
+    @JoinColumn(name = "movie_id", nullable = false, referencedColumnName = "id")
+    @ToString.Exclude
+
+    private Movie movie;
+
+
+    @ManyToOne
+    @JoinColumn(name = "cinema_id", nullable = false, referencedColumnName = "id")
+    @ToString.Exclude
+
+    private Cinema cinema;
+
+
+    @ManyToOne
+    @JoinColumn(name = "room_id", nullable = false, referencedColumnName = "id")
+    @ToString.Exclude
+
+    private Room room;
+
+    private Time time;
     private Date date;
+
+
 }
