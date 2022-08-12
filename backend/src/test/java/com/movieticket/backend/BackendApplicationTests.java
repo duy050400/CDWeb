@@ -28,7 +28,7 @@ class BackendApplicationTests {
     @Test
     void tes1() {
 
-        System.out.println(userService.movieSeatSold(1));
+        System.out.println(userService.cinemaDTOList());
 
 
     }

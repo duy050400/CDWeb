@@ -69,9 +69,9 @@ insert into moviet_ticket.province(name) values('Vĩnh Long');
 insert into moviet_ticket.province(name) values('Vĩnh Phúc');
 insert into moviet_ticket.province(name) values('Yên Bái');
 
-INSERT INTO `moviet_ticket`.`cinema` (`address`, `name`, `province_id`) VALUES ('320 Đồng Khởi', 'Đồng Khởi Cinema', '1');
-INSERT INTO `moviet_ticket`.`cinema` (`address`, `name`, `province_id`) VALUES ('1024 Đồng Khởi', 'Đồng Khởi Cinema', '1');
-INSERT INTO `moviet_ticket`.`cinema` (`address`, `name`, `province_id`) VALUES ('280 Võ Thị Sáu', 'Võ Thị Sáu Cinema', '2');
+INSERT INTO `moviet_ticket`.`cinema` (`address`, `name`, `province_id`,`is_deleted`) VALUES ('320 Đồng Khởi', 'Đồng Khởi Cinema', '1',0);
+INSERT INTO `moviet_ticket`.`cinema` (`address`, `name`, `province_id`,`is_deleted`) VALUES ('1024 Đồng Khởi', 'Đồng Khởi Cinema', '1',0);
+INSERT INTO `moviet_ticket`.`cinema` (`address`, `name`, `province_id`,`is_deleted`) VALUES ('281 Võ Thị Sáu', 'Võ Thị Sáu Cinema', '2', 0);
 
 
 INSERT INTO `moviet_ticket`.`movie_seat` (`id_colum`, `id_row`, `price`) VALUES ('1', 'A', '50000');
@@ -170,7 +170,7 @@ INSERT INTO `moviet_ticket`.`cinema_room` (`cinema_id`, `room_id`) VALUES ('1', 
 
 
 
-INSERT INTO moviet_ticket.`movie` (cast, director, genre, image, rated, running_time, title, trailer) 
+INSERT INTO moviet_ticket.`movie` (cast, director, genre, image, rated, running_time, title, trailer,`is_deleted`) 
 VALUES (
 'Steve Carell,Lucy Lawless,Michelle Yeoh...', 
 'Kyle Balda, Brad Ableson, Jonathan del Val',
@@ -179,8 +179,9 @@ VALUES (
 'P - GENERAL MOVIE TO ALL CUSTOMERS', 
 '88 minutes', 
 'MINIONS: THE RISE OF GRU', 
-'https://www.youtube.com/watch?v=dTQXlDV16SY&ab_channel=CGVCinemasVietnam');
-INSERT INTO moviet_ticket.`movie` (cast, director, genre, image, rated, running_time, title, trailer) 
+'https://www.youtube.com/watch?v=dTQXlDV16SY&ab_channel=CGVCinemasVietnam',
+0);
+INSERT INTO moviet_ticket.`movie` (cast, director, genre, image, rated, running_time, title, trailer,`is_deleted`) 
 VALUES (
 'Minami Takayama, Chafûrin, Tôru Furuya...', 
 'Gosho Aoyama, Susumu Mitsunaka',
@@ -189,8 +190,9 @@ VALUES (
 'C13 - NO CHILDREN UNDER 13 YEARS OLD', 
 '111 minutes', 
 'DETECTIVE CONAN: THE BRIDE OF HALLOWEEN', 
-'https://www.youtube.com/watch?v=SqSJPzWvcLc');
-INSERT INTO moviet_ticket.`movie` (cast, director, genre, image, rated, running_time, title, trailer) 
+'https://www.youtube.com/watch?v=SqSJPzWvcLc',
+0);
+INSERT INTO moviet_ticket.`movie` (cast, director, genre, image, rated, running_time, title, trailer,`is_deleted`) 
 VALUES (
 'Chris Hemsworth, Tessa Thompson, Natalie Portman, Chris Pratt...', 
 'Taika Waititi',
@@ -199,8 +201,8 @@ VALUES (
 'C13 - NO CHILDREN UNDER 13 YEARS OLD', 
 '118 minutes', 
 'THOR: LOVE AND THUNDER', 
-'https://www.youtube.com/watch?v=Go8nTmfrQd8');
-INSERT INTO moviet_ticket.`movie` (cast, director, genre, image, rated, running_time, title, trailer) 
+'https://www.youtube.com/watch?v=Go8nTmfrQd8',0);
+INSERT INTO moviet_ticket.`movie` (cast, director, genre, image, rated, running_time, title, trailer,`is_deleted`) 
 VALUES (
 'Chris Pratt, Bryce Dallas Howard, Isabella Sermon, Omar Sy, Sam Neill...', 
 'Colin Trevorrow',
@@ -209,8 +211,8 @@ VALUES (
 'C13 - NO CHILDREN UNDER 13 YEARS OLD', 
 '147 minutes', 
 'JURASSIC WORLD 3: Dominion', 
-'https://www.youtube.com/watch?v=fb5ELWi-ekk');
-INSERT INTO moviet_ticket.`movie` (cast, director, genre, image, rated, running_time, title, trailer) 
+'https://www.youtube.com/watch?v=fb5ELWi-ekk',0);
+INSERT INTO moviet_ticket.`movie` (cast, director, genre, image, rated, running_time, title, trailer,`is_deleted`) 
 VALUES (
 'Tang Wei, Park Hae Il...', 
 'Park Chan Wook',
@@ -219,8 +221,8 @@ VALUES (
 'C16 - NO CHILDREN UNDER 16 YEARS OLD', 
 '138 minutes', 
 'DECISION TO LEAVE', 
-'https://www.youtube.com/watch?v=9aMHyTqvIvU');
-INSERT INTO moviet_ticket.`movie` (cast, director, genre, image, rated, running_time, title, trailer) 
+'https://www.youtube.com/watch?v=9aMHyTqvIvU',0);
+INSERT INTO moviet_ticket.`movie` (cast, director, genre, image, rated, running_time, title, trailer,`is_deleted`) 
 VALUES (
 'Dwayne Johnson, Kevin Hart, Keanu Reeves...', 
 'Jared Stern',
@@ -229,8 +231,8 @@ VALUES (
 'P - GENERAL MOVIE TO ALL CUSTOMERS', 
 '106 minutes', 
 'DECISION TO LEAVE', 
-'https://www.youtube.com/watch?v=1jkw2JPCl18');
-INSERT INTO moviet_ticket.`movie` (cast, director, genre, image, rated, running_time, title, trailer) 
+'https://www.youtube.com/watch?v=1jkw2JPCl18',0);
+INSERT INTO moviet_ticket.`movie` (cast, director, genre, image, rated, running_time, title, trailer,`is_deleted`) 
 VALUES (
 'Aghniny Haque, Achmad Megantara, Aulia Sarah...', 
 'Awi Suryadi',
@@ -239,8 +241,8 @@ VALUES (
 'C16 - NO CHILDREN UNDER 16 YEARS OLD', 
 '123 minutes', 
 'KKN DI DESA PENARI', 
-'https://www.youtube.com/watch?v=jtDRXPTZT-M');
-INSERT INTO moviet_ticket.`movie` (cast, director, genre, image, rated, running_time, title, trailer) 
+'https://www.youtube.com/watch?v=jtDRXPTZT-M',0);
+INSERT INTO moviet_ticket.`movie` (cast, director, genre, image, rated, running_time, title, trailer,`is_deleted`) 
 VALUES (
 'Kim Yoon-Seok, Jo In-Sung, Huh Joon-Ho,...', 
 'Ryoo Seung-wan',
@@ -249,8 +251,8 @@ VALUES (
 'C16 - NO CHILDREN UNDER 16 YEARS OLD', 
 '121 minutes', 
 'ESCAPE FROM MOGADISHU', 
-'https://www.youtube.com/watch?v=jtDRXPTZT-M');
-INSERT INTO moviet_ticket.`movie` (cast, director, genre, image, rated, running_time, title, trailer) 
+'https://www.youtube.com/watch?v=jtDRXPTZT-M',0);
+INSERT INTO moviet_ticket.`movie` (cast, director, genre, image, rated, running_time, title, trailer,`is_deleted`)  
 VALUES (
 'Hong Je Yi, Kim Ji Young, Kim Mi Hwa, Hwang Seok Jeong', 
 'Kim Hyunho, Yoon Jewan',
@@ -259,8 +261,8 @@ VALUES (
 'P - GENERAL MOVIE TO ALL CUSTOMERS', 
 '79 minutes', 
 'PORORO, DINOSAUR ISLAND ADVENTURE', 
-'https://www.youtube.com/watch?v=s3vUSpREuO8');
-INSERT INTO moviet_ticket.`movie` (cast, director, genre, image, rated, running_time, title, trailer) 
+'https://www.youtube.com/watch?v=s3vUSpREuO8',0);
+INSERT INTO moviet_ticket.`movie` (cast, director, genre, image, rated, running_time, title, trailer,`is_deleted`) 
 VALUES (
 'Rachel Rodriguez, Daniel Martínez, Dominika Paleta,...', 
 'Henry Bedwell',
@@ -269,8 +271,8 @@ VALUES (
 'C18 - NO CHILDREN UNDER 18 YEARS OLD', 
 '80 minutes', 
 'KAREM, THE POSSESSION', 
-'https://www.youtube.com/watch?v=-th9bcFAGJM');
-INSERT INTO moviet_ticket.`movie` (cast, director, genre, image, rated, running_time, title, trailer) 
+'https://www.youtube.com/watch?v=-th9bcFAGJM',0);
+INSERT INTO moviet_ticket.`movie` (cast, director, genre, image, rated, running_time, title, trailer,`is_deleted`) 
 VALUES (
 'Trần Lực, Avin Lu, Akari Nakatani, Bùi Lan Hương, Hoàng Hà, Lan Thy,...', 
 'Phan Gia Nhật Linh',
@@ -279,8 +281,8 @@ VALUES (
 'C13 - NO CHILDREN UNDER 13 YEARS OLD', 
 '136 minutes', 
 'EM VÀ TRỊNH', 
-'https://www.youtube.com/watch?v=IosqnBOkk2I');
-INSERT INTO moviet_ticket.`movie` (cast, director, genre, image, rated, running_time, title, trailer) 
+'https://www.youtube.com/watch?v=IosqnBOkk2I',0);
+INSERT INTO moviet_ticket.`movie` (cast, director, genre, image, rated, running_time, title, trailer,`is_deleted`) 
 VALUES (
 'Dương Tử Quỳnh, Quan Kế Huy, Stephanie Hsu, James Hong,...', 
 'Daniel Kwan, Daniel Scheinert',
@@ -289,8 +291,8 @@ VALUES (
 'C18 - NO CHILDREN UNDER 18 YEARS OLD', 
 '139 minutes', 
 'EVERYTHING EVERYWHERE ALL AT ONCE', 
-'https://www.youtube.com/watch?v=wxN1T1uxQ2g');
-INSERT INTO moviet_ticket.`movie` (cast, director, genre, image, rated, running_time, title, trailer) 
+'https://www.youtube.com/watch?v=wxN1T1uxQ2g',0);
+INSERT INTO moviet_ticket.`movie` (cast, director, genre, image, rated, running_time, title, trailer,`is_deleted`) 
 VALUES (
 'Shin Shi A, Lee Jong Suk, Park Eun Bin, Jin Goo, Kim Da Mi,...', 
 'Park Hoon Jung',
@@ -299,8 +301,8 @@ VALUES (
 'C18 - NO CHILDREN UNDER 18 YEARS OLD', 
 '138 minutes', 
 'THE WITCH: PART 2.THE OTHER ONE', 
-'https://www.youtube.com/watch?v=jhF5zIGJsXs');
-INSERT INTO moviet_ticket.`movie` (cast, director, genre, image, rated, running_time, title, trailer) 
+'https://www.youtube.com/watch?v=jhF5zIGJsXs',0);
+INSERT INTO moviet_ticket.`movie` (cast, director, genre, image, rated, running_time, title, trailer,`is_deleted`) 
 VALUES (
 'Eiji Akaso, Keita Machida , Kodai Asaka, Yutaro,...', 
 'Hiroki Kazama',
@@ -309,8 +311,8 @@ VALUES (
 'C16 - NO CHILDREN UNDER 16 YEARS OLD', 
 '104 minutes', 
 'CHERRY MAGIC! THIRTY YEARS OF VIRGINITY CAN MAKE YOU A WIZARD?!', 
-'https://www.youtube.com/watch?v=CQbXwIiJDfI');
-INSERT INTO moviet_ticket.`movie` (cast, director, genre, image, rated, running_time, title, trailer) 
+'https://www.youtube.com/watch?v=CQbXwIiJDfI',0);
+INSERT INTO moviet_ticket.`movie` (cast, director, genre, image, rated, running_time, title, trailer,`is_deleted`) 
 VALUES (
 'Dwayne Johnson, Sarah Shahi, Pierce Brosnan, Noah Centineo,...', 
 'Jaume Collet-Serra',
@@ -319,15 +321,26 @@ VALUES (
 'C16 - NO CHILDREN UNDER 16 YEARS OLD', 
 '104 minutes', 
 'BLACK ADAM', 
-'https://www.youtube.com/watch?v=X0tOpBuYasI');
+'https://www.youtube.com/watch?v=X0tOpBuYasI,0');
 
-INSERT INTO `moviet_ticket`.`movie_showing` (`date`, `time`, `cinema_id`, `movie_id`, `room_id`) VALUES ('2022-07-24', '10:15:00', '1', '1', '1');
-INSERT INTO `moviet_ticket`.`movie_showing` (`date`, `time`, `cinema_id`, `movie_id`, `room_id`) VALUES ('2022-07-23', '11:15:00', '1', '1', '1');
-INSERT INTO `moviet_ticket`.`movie_showing` (`date`, `time`, `cinema_id`, `movie_id`, `room_id`) VALUES ('2022-07-23', '12:45:00', '1', '1', '2');
-INSERT INTO `moviet_ticket`.`movie_showing` (`date`, `time`, `cinema_id`, `movie_id`, `room_id`) VALUES ('2022-07-23', '14:20:00', '1', '1', '5');
-INSERT INTO `moviet_ticket`.`movie_showing` (`date`, `time`, `cinema_id`, `movie_id`, `room_id`) VALUES ('2022-07-23', '16:35:00', '1', '1', '7');
-INSERT INTO `moviet_ticket`.`movie_showing` (`date`, `time`, `cinema_id`, `movie_id`, `room_id`) VALUES ('2022-07-23', '18:30:00', '1', '1', '6');
-INSERT INTO `moviet_ticket`.`movie_showing` (`date`, `time`, `cinema_id`, `movie_id`, `room_id`) VALUES ('2022-07-23', '20:10:00', '1', '1', '8');
+INSERT INTO `moviet_ticket`.`movie_showing` (`date`, `time`, `cinema_id`, `movie_id`, `room_id`,`is_deleted`) VALUES ('2022-07-24', '10:15:00', '1', '1', '1',0);
+INSERT INTO `moviet_ticket`.`movie_showing` (`date`, `time`, `cinema_id`, `movie_id`, `room_id`,`is_deleted`) VALUES ('2022-07-23', '11:15:00', '1', '1', '1',0);
+INSERT INTO `moviet_ticket`.`movie_showing` (`date`, `time`, `cinema_id`, `movie_id`, `room_id`,`is_deleted`) VALUES ('2022-07-23', '12:45:00', '1', '1', '2',0);
+INSERT INTO `moviet_ticket`.`movie_showing` (`date`, `time`, `cinema_id`, `movie_id`, `room_id`,`is_deleted`) VALUES ('2022-07-23', '14:20:00', '1', '1', '5',0);
+INSERT INTO `moviet_ticket`.`movie_showing` (`date`, `time`, `cinema_id`, `movie_id`, `room_id`,`is_deleted`) VALUES ('2022-07-23', '16:35:00', '1', '1', '7',0);
+INSERT INTO `moviet_ticket`.`movie_showing` (`date`, `time`, `cinema_id`, `movie_id`, `room_id`,`is_deleted`) VALUES ('2022-07-23', '18:30:00', '1', '1', '6',0);
+INSERT INTO `moviet_ticket`.`movie_showing` (`date`, `time`, `cinema_id`, `movie_id`, `room_id`,`is_deleted`) VALUES ('2022-07-23', '20:10:00', '1', '1', '8',0);
+INSERT INTO `moviet_ticket`.`movie_showing` (`date`, `time`, `cinema_id`, `movie_id`, `room_id`,`is_deleted`) VALUES ('2022-07-23', '23:45:00', '1', '1', '10',0);
+
+INSERT INTO `moviet_ticket`.`movie_showing` (`date`, `time`, `cinema_id`, `movie_id`, `room_id`,`is_deleted`) VALUES ('2022-08-03', '10:15:00', '1', '1', '1',0);
+INSERT INTO `moviet_ticket`.`movie_showing` (`date`, `time`, `cinema_id`, `movie_id`, `room_id`,`is_deleted`) VALUES ('2022-08-03', '11:15:00', '1', '1', '1',0);
+INSERT INTO `moviet_ticket`.`movie_showing` (`date`, `time`, `cinema_id`, `movie_id`, `room_id`,`is_deleted`) VALUES ('2022-08-03', '12:45:00', '1', '1', '2',0);
+INSERT INTO `moviet_ticket`.`movie_showing` (`date`, `time`, `cinema_id`, `movie_id`, `room_id`,`is_deleted`) VALUES ('2022-08-03', '14:20:00', '1', '1', '5',0);
+INSERT INTO `moviet_ticket`.`movie_showing` (`date`, `time`, `cinema_id`, `movie_id`, `room_id`,`is_deleted`) VALUES ('2022-08-03', '16:35:00', '1', '1', '7',0);
+INSERT INTO `moviet_ticket`.`movie_showing` (`date`, `time`, `cinema_id`, `movie_id`, `room_id`,`is_deleted`) VALUES ('2022-08-03', '18:30:00', '1', '1', '6',0);
+INSERT INTO `moviet_ticket`.`movie_showing` (`date`, `time`, `cinema_id`, `movie_id`, `room_id`,`is_deleted`) VALUES ('2022-08-03', '20:10:00', '1', '1', '8',0);
+INSERT INTO `moviet_ticket`.`movie_showing` (`date`, `time`, `cinema_id`, `movie_id`, `room_id`,`is_deleted`) VALUES ('2022-08-03', '23:45:00', '1', '1', '10',0);
+
 
 select c.name , p.name from moviet_ticket.province p join moviet_ticket.cinema c where c.province_id=p.id;
 select c.id,c.name , c.address,p.name from moviet_ticket.province p join moviet_ticket.cinema c where c.province_id=p.id;

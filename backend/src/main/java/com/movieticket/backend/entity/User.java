@@ -24,6 +24,8 @@ public class User {
 
     private String password;
 
+    private boolean isDeleted;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -37,6 +39,14 @@ public class User {
         this.email = email;
         this.password = password;
 
+    }
+
+    public boolean isDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        isDeleted = deleted;
     }
 
     public Long getId() {

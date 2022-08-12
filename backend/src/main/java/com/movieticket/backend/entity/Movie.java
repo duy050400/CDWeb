@@ -26,4 +26,6 @@ public class Movie {
     private String running_time;
     private String rated;
 
+    private boolean isDeleted;
+
 }

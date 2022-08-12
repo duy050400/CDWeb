@@ -18,21 +18,16 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/test")
 public class TestController {
-    @Autowired
-    UserService userService;
 
 
-    @GetMapping("/all")
-    public List<MovieShowingDTO> movieShowingList(){
 
-        return userService.movieShowingByMovieDate(1,"2022-07-23");
-    }
+
 
 
     @GetMapping("/user")
     @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public String userAccess() {
-        return "User Content.";
+        return "User Content.,";
     }
 
     @GetMapping("/mod")

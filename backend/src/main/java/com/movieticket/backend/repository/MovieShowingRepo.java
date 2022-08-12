@@ -16,9 +16,11 @@ public interface MovieShowingRepo extends JpaRepository<MovieShowing, Integer> {
 
     List<MovieShowing> findByCinema(Cinema cinema);
 
+    @Query(value = "SELECT * FROM moviet_ticket.movie_showing where is_deleted=0",nativeQuery = true)
+    List<MovieShowing> findAllIsDelete();
 
-    @Query(value = "SELECT * FROM moviet_ticket.movie_showing where cinema_id = ?1",nativeQuery = true)
+    @Query(value = "SELECT * FROM moviet_ticket.movie_showing where cinema_id = ?1 and is_deleted=0",nativeQuery = true)
     List<MovieShowing> findByCinemaID(int cinema_id);
-    @Query(value = "SELECT * FROM moviet_ticket.movie_showing where movie_id = ?1 and time>?2 and date = ?3",nativeQuery = true)
-    List<MovieShowing> findByDateTime(int movie_id,String time, String date);
+    @Query(value = "SELECT * FROM moviet_ticket.movie_showing where movie_id = ?1 and time>?2 and date = ?3 and cinema_id = ?4 and is_deleted=0",nativeQuery = true)
+    List<MovieShowing> findByDateTimeCinema(int movie_id,String time, String date, int cinema_id);
 }

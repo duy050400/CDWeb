@@ -1,0 +1,33 @@
+<br><br><br><br>
+<label style="margin-right: 50px; display: flex;
+justify-content: center;">
+    <p> Chọn giờ chiếu: </p>
+
+    <select #select (change)="time(select.value)">
+        <option [value]="timemovie.id" *ngFor="let timemovie of movieShowing"> {{timemovie.time}}
+        </option>
+
+    </select>
+</label>
+
+<br><br><br><br>
+<div style=" display: flex;justify-content: center; border-width:2px; border-style:solid; border-color:black; background-color: azure;
+">
+    Screen
+</div>
+<div style=" display: flex;justify-content: center;">
+    
+    <form #f="ngForm" (ngSubmit)="booking(f)" novalidate>
+        <div class="wrapper" ngModelGroup="seat">
+            <div *ngFor="let seat of seats, let i=index">
+                <div>
+                    <input #saveUserNameCheckBox class="checkbox-flip" type="checkbox" id="checkbox-circle1" [value]="seat.id" name="{{seat.id}}" [ngModel]="false" [disabled]="disable[i]" (change)="checkbox(saveUserNameCheckBox.value)">
+                    <label for="checkbox-circle1"><span>{{seat.id_row}}</span> {{seat.id_colum}}</label>
+                </div>
+            </div>
+        </div>
+        <br><br><br>
+        <input  type="submit" value="REGISTER NOW">
+    </form>
+</div>
+

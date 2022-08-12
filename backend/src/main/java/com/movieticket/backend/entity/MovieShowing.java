@@ -41,5 +41,7 @@ public class MovieShowing {
     private Time time;
     private Date date;
 
+    private boolean isDeleted;
+
 
 }

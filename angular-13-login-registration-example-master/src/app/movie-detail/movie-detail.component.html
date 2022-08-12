@@ -1,0 +1,77 @@
+<div class="w3_content_agilleinfo_inner">
+    <div class="agile_featured_movies">
+        <div class="inner-agile-w3l-part-head">
+            <h3 class="w3l-inner-h-title">Detail Movie</h3>
+
+        </div>
+        <div class="latest-news-agile-info">
+            <div class="col-md-8 latest-news-agile-left-content">
+                <div class="single video_agile_player">
+
+                    <div class="video-grid-single-page-agileits">
+                        <div data-video="f2Z65fobH2I" id="video"><iframe height="700px" [src]="trailer">
+                            </iframe> </div>
+                    </div>
+                    <br>
+
+                    <label style="margin-right: 50px;">
+                        <select #select (change)="getCinema(select.value)">
+                            <option [value]="province.id" *ngFor="let province of provinces"> {{province.name}}
+                            </option>
+
+                        </select>
+                    </label>
+
+
+
+                    <label style="margin-right: 50px;">
+                        <select #select (change)="Booking(select.value)">
+                            <option [value]="cinema.id" *ngFor="let cinema of province.cinemas"> {{cinema.name}}
+                            </option>
+
+                        </select>
+                    </label>
+
+                    <input style="margin-right: 50px;" type="date" id="birthday" name="birthday" (change)="getDate()" [(ngModel)]="date">
+                    <a href="/booking?movieid={{movie.id}}&date={{date}}&cinemaid={{cinema_id}}" class="btn btn-danger" role="button">Đặt vé Ngay</a>
+                </div>
+                <div class="single-agile-shar-buttons">
+                </div>
+                <div class="all-comments-info">
+                </div>
+            </div>
+            <div class="col-md-4 latest-news-agile-right-content">
+                <h4 class="side-t-w3l-agile">Hot <span>Topics</span></h4>
+                <div class="clearfix"> </div>
+                <img src="{{movie.image}}" title="Movies Pro" width="300px" height="400px">
+
+                <ul class="side-bar-agile">
+                    <li>
+                        <h2 style="color: red;"><b>{{movie.title}}</b></h2>
+                    </li>
+                    <li>
+                        <b>Đạo diễn: </b> {{movie.director}}
+                    </li>
+                    <li>
+                        <b>Diễn viên: </b> {{movie.cast}}
+                    </li>
+                    <li>
+                        <b>Thể loại: </b> {{movie.genre}}
+                    </li>
+                    <li>
+                        <b>Thời lượng: </b> {{movie.running_time}}
+                    </li>
+                    <li>
+                        <b>Rated: </b><span style="color: red;"> {{movie.rated}}</span>
+                    </li>
+
+                </ul>
+
+
+
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+    </div>
+</div>

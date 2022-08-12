@@ -19,4 +19,6 @@ public class MovieDTO {
     private String genre;
     private String running_time;
     private String rated;
+
+
 }

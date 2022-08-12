@@ -1,0 +1,53 @@
+h2 {
+  font-size: x-large;
+  color: black;
+}
+
+img {
+  border-radius: 5px;
+}
+.body {
+  overflow-y: hidden;
+  overflow-x: scroll;
+  padding: 20px;
+  position: relative;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.slick-next {
+  right:20px;
+  z-index: 99;
+  &:before {
+    font-size: 40px;
+  }
+}
+
+.slick-prev {
+  left: 20px;
+  z-index: 99;
+  &:before {
+    font-size: 40px;
+  }
+}
+.movie {
+  margin: 20px 0;
+
+  .movie__images {
+    div.thumbnails .carousel {
+      width:100%;
+      display: flex;
+      .slick-item {
+        transition: all 0.3s ease;
+      }
+
+      .slick-item:hover {
+        transform: scale(1.05);
+        cursor: pointer;
+      }
+    }
+  }
+}
+

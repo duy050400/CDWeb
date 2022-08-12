@@ -15,7 +15,7 @@ import java.util.Set;
 public class ProvinceDTO {
     private int id;
     private String name;
-    private Set<Cinema> cinemas;
+    private Set<CinemaProvinceDTO> cinemas;
 
 
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Movie } from '../_model/movie';
 import { UserService } from '../_services/user.service';
 
 @Component({
@@ -7,12 +8,12 @@ import { UserService } from '../_services/user.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  content?: string;
+  content: Movie[] = [];
 
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-    this.userService.getPublicContent().subscribe({
+    this.userService.getMovie().subscribe({
       next: data => {
         this.content = data;
       },
@@ -20,5 +21,9 @@ export class HomeComponent implements OnInit {
         this.content = JSON.parse(err.error).message;
       }
     });
+    console.log(this.content)
+    console.log("movie:")
+    
+  
   }
 }

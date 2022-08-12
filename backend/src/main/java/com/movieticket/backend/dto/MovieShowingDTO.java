@@ -17,7 +17,7 @@ import java.sql.Time;
 @ToString
 public class MovieShowingDTO {
     private int id;
-    private Movie movie;
+    private MovieDTO movie;
     private CinemaMovieShowingDTO cinema;
     private Room room;
     private Time time;

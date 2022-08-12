@@ -38,11 +38,12 @@ public class UserService {
     @Autowired
     MovieSeatRepo movieSeatRepo;
 
-
+    @Autowired
+    RoomRepo roomRepo;
 
 
     public List<MovieDTO> listMovieDTOS(){
-        List<Movie> movieList = movieRepo.findAll();
+        List<Movie> movieList = movieRepo.findAllByIsDeleted();
         List<MovieDTO> movieDTOList = new ArrayList<>();
         for(Movie movie : movieList){
             MovieDTO movieDTO = modelMapper.map(movie, MovieDTO.class);
@@ -60,8 +61,12 @@ public class UserService {
         return provinceDTOSList;
     }
 
+
+
+
     public ProvinceDTO provinceDTO(int id) {
         Province province = provinceRepo.findById(id).orElseThrow(() -> new RuntimeException("Error: Province is not found."));
+
         ProvinceDTO provinceDTO = modelMapper.map(province, ProvinceDTO.class);
         return provinceDTO;
     }
@@ -95,11 +100,11 @@ public class UserService {
         return movieShowingDTOSList;
     }
 
-    public List<MovieShowingDTO> movieShowingByMovieDate(int movie_id,String date) {
+    public List<MovieShowingDTO> movieShowingByMovieDate(int movie_id,String date, int cinema_id) {
         long now = System.currentTimeMillis();
         Time time = new Time(now);
 
-        List<MovieShowing> movieShowingList = movieShowingRepo.findByDateTime(movie_id,time.toString(), date);
+        List<MovieShowing> movieShowingList = movieShowingRepo.findByDateTimeCinema(movie_id,time.toString(), date,cinema_id);
         List<MovieShowingDTO> movieShowingDTOSList = new ArrayList<>();
         for(MovieShowing movieShowing : movieShowingList){
             MovieShowingDTO movieShowingDTO =modelMapper.map(movieShowing,MovieShowingDTO.class);
@@ -118,9 +123,9 @@ public class UserService {
         return movieShowingDTOSList;
     }
 
-    public String SaveBooking(int movie_showing_id, int user_id, List<Integer> seat){
+    public String SaveBooking(int movie_showing_id, String username, List<Integer> seat){
         MovieShowing movieShowing = movieShowingRepo.findById(movie_showing_id).orElseThrow(() -> new RuntimeException("Error: MovieShowing is not found."));
-        User user = userRepository.findById((long)user_id).orElseThrow(() -> new RuntimeException("Error: User is not found."));
+        User user = userRepository.findByUsername(username).orElseThrow(() -> new RuntimeException("Error: User is not found."));
         List<MovieSeat> seats = movieSeatRepo.findAllById(seat);
         double total = 0;
         for(MovieSeat movieSeat : seats){
@@ -133,25 +138,11 @@ public class UserService {
         movieTicket.setMovieShowing(movieShowing);
         movieTicket.setTotal_price(total);
         movieTicketRepo.save(movieTicket);
+
         return "Save done";
     }
 
-    public List<MovieTicketDTO> movieTicketByUserId(int user_id){
-        //User user = userRepository.findById((long)user_id).orElseThrow(() -> new RuntimeException("Error: User is not found."));
-        List<MovieTicket> movieTickets = movieTicketRepo.findByUserId(user_id);
-        List<MovieTicketDTO> movieTicketDTOS = new ArrayList<>();
-        for (MovieTicket movieTicket : movieTickets){
-            MovieTicketDTO movieTicketDTO = modelMapper.map(movieTicket,MovieTicketDTO.class);
-            UserDTO userDTO = modelMapper.map(movieTicket.getUser(),UserDTO.class);
-            MovieShowingDTO movieShowingDTO = modelMapper.map(movieTicket.getMovieShowing(),MovieShowingDTO.class);
-            movieTicketDTO.setUserDTO(userDTO);
-            movieTicketDTO.setMovieShowing(movieShowingDTO);
-            movieTicketDTOS.add(movieTicketDTO);
-        }
-        return movieTicketDTOS;
 
-
-    }
 
     public List<MovieSeatDTO> movieSeatSold(int movie_showing_id){
         List<MovieSeatDTO> movieSeatDTOS = new ArrayList<>();
@@ -163,5 +154,47 @@ public class UserService {
             }
         }
         return movieSeatDTOS;
+    }
+
+    public MovieDTO movieDTO(int id){
+        Movie movie = movieRepo.findByIdIsDeleted(id).orElseThrow(() -> new RuntimeException("Error: User is not found."));
+        MovieDTO movieDTO = modelMapper.map(movie,MovieDTO.class);
+        return movieDTO;
+
+    }
+    public List<MovieSeatDTO> movieSeatDTOList(){
+        List<MovieSeat> movieSeatList = movieSeatRepo.findAll();
+        List<MovieSeatDTO> movieSeatDTOList = new ArrayList<>();
+        for(MovieSeat movieSeat:movieSeatList){
+            MovieSeatDTO movieSeatDTO = modelMapper.map(movieSeat,MovieSeatDTO.class);
+            movieSeatDTOList.add(movieSeatDTO);
+        }
+        return movieSeatDTOList;
+
+    }
+
+    public List<MovieSeatDTO> listSoldTicket(int id_movie_showing){
+        MovieShowing movieShowing = movieShowingRepo.findById(id_movie_showing).orElseThrow(() -> new RuntimeException("Error:not found."));
+        List<MovieTicket> movieTicketList = movieTicketRepo.findByMovieShowingID(id_movie_showing);
+        List<MovieSeatDTO>movieSeatDTOList = new ArrayList<>();
+        for(MovieTicket movieTicket:movieTicketList){
+            for(MovieSeat movieSeat:movieTicket.getSeats()){
+                MovieSeatDTO movieSeatDTO = modelMapper.map(movieSeat,MovieSeatDTO.class);
+                movieSeatDTOList.add(movieSeatDTO);
+            }
+
+        }
+        return movieSeatDTOList;
+    }
+
+    public List<MovieTicketDTO> movieTicketDTOList(String username){
+        User user = userRepository.findByUsername(username).orElseThrow(() -> new RuntimeException("Error: User is not found."));
+        List<MovieTicket> movieTicketList =movieTicketRepo.findByUserId(Integer.valueOf(user.getId().intValue()));
+        List<MovieTicketDTO> movieTicketDTOList = new ArrayList<>();
+        for(MovieTicket movieTicket:movieTicketList){
+            MovieTicketDTO movieTicketDTO = modelMapper.map(movieTicket,MovieTicketDTO.class);
+            movieTicketDTOList.add(movieTicketDTO);
+        }
+        return movieTicketDTOList;
     }
 }

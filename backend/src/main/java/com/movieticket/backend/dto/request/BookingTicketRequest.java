@@ -14,6 +14,6 @@ import java.util.List;
 @NoArgsConstructor
 public class BookingTicketRequest {
     private int movie_showing_id;
-    private int user_id;
+    private String username;
     private List<Integer> seats = new ArrayList<>();
 }

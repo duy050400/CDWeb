@@ -1,0 +1,102 @@
+<ng-container *ngIf="showAdminBoard">
+    <div class="w3_content_agilleinfo_inner">
+        <div class="agile_featured_movies">
+            <div class="inner-agile-w3l-part-head">
+                <h3 style="margin-bottom: 30px;" class="w3l-inner-h-title">Quản lý Cinema</h3>
+
+                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add
+                    Cinema</button>
+
+
+            </div>
+            <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+                <div id="myTabContent" class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
+                        <div class="agile-news-table">
+                            <table id="table-breakpoint">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Cinema</th>
+                                        <th>Địa chỉ</th>
+                                        <th>Tỉnh</th>
+                                        <th>Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let cinema of cinemas">
+                                        <td>{{cinema.id}}</td>
+                                        <td>{{cinema.name}}</td>
+                                        <td>{{cinema.address}}</td>
+                                        <td>{{cinema.province.name}}</td>
+                                        <td>
+                                            <div>
+                                                <button class="btn btn-danger"
+                                                    (click)="deleted(cinema.id)">Delete</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Model -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" id="close" data-dismiss="modal">&times;</button>
+                    <h4>Register</h4>
+                    <div class="login-form">
+                        <form #f="ngForm" (ngSubmit)="addCinema(f)" novalidate>
+                            <input style="margin-bottom:30px;" class="form-control" name="name" ngModel required
+                                #first="ngModel" placeholder="Tên Rạp">
+                            <input style="margin-bottom:30px;" class="form-control" name="address" ngModel required
+                                #last="ngModel" placeholder="Địa chỉ">
+                            <div class="selectdiv">
+                                <label>
+                                    <select name="id_province" ngModel required>
+                                        <option [value]="province.id" *ngFor="let province of provinces">
+                                            {{province.name}}
+                                        </option>
+
+                                    </select>
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <div *ngFor="let room of rooms" name="room" ngModelGroup="rooms">
+                                    <input class="form-check-input" type="checkbox" id="flexCheckDefault"
+                                        name="{{room.id}}" [ngModel]="false">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        {{room.room_name}}
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="alert-danger">
+                                <div>{{message}}</div>
+                            </div>
+                            <div class="tp">
+                                <input type="submit" value="Save">
+                            </div>
+
+                        </form>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</ng-container>

@@ -22,6 +22,8 @@ public class Cinema {
     private String name;
     private String address;
 
+    private boolean isDeleted;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "province_id", nullable = false, referencedColumnName = "id")
     @ToString.Exclude

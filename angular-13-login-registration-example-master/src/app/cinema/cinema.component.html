@@ -1,0 +1,51 @@
+<div class="w3_content_agilleinfo_inner">
+    <div class="agile_featured_movies">
+        <div class="inner-agile-w3l-part-head">
+            <h3 class="w3l-inner-h-title">Cinema List</h3>
+            
+                <div class="selectdiv">
+                    <label>
+                        <select #select (change)="getCinema(select.value)">
+                            <option [value]="province.id" *ngFor="let province of provinces"> {{province.name}}
+                            </option>
+
+                        </select>
+                    </label>
+                </div>
+            
+        </div>
+        <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+            <div id="myTabContent" class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
+                    <div class="agile-news-table">
+                        <table id="table-breakpoint">
+                            <thead>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Cinema</th>
+                                    <th>Địa chỉ</th>
+                                    <th>Bản đồ</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let cinema of province.cinemas">
+                                    <td>{{cinema.id}}</td>
+                                    <td>{{cinema.name}}</td>
+                                    <td>{{cinema.address}}</td>
+                                    <td><iframe
+                                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d501224.47843974456!2d106.88420479504163!3d11.052400150603816!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174d952b84aea25%3A0xe04ae6f14b6e1655!2zxJDhu5NuZyBOYWksIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1659294312110!5m2!1svi!2s"
+                                            width="200" height="200" style="border:0;" allowfullscreen="" loading="lazy"
+                                            referrerpolicy="no-referrer-when-downgrade"></iframe></td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

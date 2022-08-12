@@ -14,6 +14,15 @@ import { BoardModeratorComponent } from './board-moderator/board-moderator.compo
 import { BoardUserComponent } from './board-user/board-user.component';
 
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { CinemaComponent } from './cinema/cinema.component';
+import { AdminCinemaComponent } from './admin-cinema/admin-cinema.component';
+import { MovieDetailComponent } from './movie-detail/movie-detail.component';
+import { BookingComponent } from './booking/booking.component';
+import { TicketComponent } from './ticket/ticket.component';
+import { AdminMovieComponent } from './admin-movie/admin-movie.component';
+import { AdminMovieShowingComponent } from './admin-movie-showing/admin-movie-showing.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +33,16 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
     ProfileComponent,
     BoardAdminComponent,
     BoardModeratorComponent,
-    BoardUserComponent
+    BoardUserComponent,
+    HeaderComponent,
+    FooterComponent,
+    CinemaComponent,
+    AdminCinemaComponent,
+    MovieDetailComponent,
+    BookingComponent,
+    TicketComponent,
+    AdminMovieComponent,
+    AdminMovieShowingComponent
   ],
   imports: [
     BrowserModule,

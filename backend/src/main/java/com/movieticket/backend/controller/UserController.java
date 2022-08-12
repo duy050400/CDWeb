@@ -1,9 +1,7 @@
 package com.movieticket.backend.controller;
 
 
-import com.movieticket.backend.dto.MovieDTO;
-import com.movieticket.backend.dto.MovieShowingDTO;
-import com.movieticket.backend.dto.MovieTicketDTO;
+import com.movieticket.backend.dto.*;
 import com.movieticket.backend.dto.reponse.MessageResponse;
 import com.movieticket.backend.dto.request.BookingTicketRequest;
 import com.movieticket.backend.entity.MovieSeat;
@@ -24,35 +22,63 @@ public class UserController {
     @Autowired
     UserService userService;
 
+
+
+    @GetMapping("/province")
+    List<ProvinceDTO> provinceDTOList(){
+        return userService.listProvince();
+    }
+
+
+    @GetMapping("/province/{id}")
+    ProvinceDTO provinceDTO(@PathVariable("id") int id){
+        return userService.provinceDTO(id);
+    }
     @GetMapping("/movie")
     public List<MovieDTO> listMovie(){
         return userService.listMovieDTOS();
     }
 
-    @GetMapping("/findticket/{movie_id}&{date}")
-    public List<MovieShowingDTO> lists(@PathVariable("movie_id") int movie_id,
-                                             @PathVariable("date") String date){
-        return userService.movieShowingByMovieDate(movie_id,date);
+    @GetMapping("/movie/{id}")
+    MovieDTO movieDTO(@PathVariable("id") int id){
+        return userService.movieDTO(id);
     }
 
-    @PostMapping("/booking")
+    @GetMapping("/findticket/{movie_id}&{date}&{cinema_id}")
+    public List<MovieShowingDTO> lists(@PathVariable("movie_id") int movie_id,
+                                             @PathVariable("date") String date,
+                                             @PathVariable("cinema_id") int cinema_id){
+        return userService.movieShowingByMovieDate(movie_id,date,cinema_id);
+    }
 
+        @GetMapping("/seats")
+    public List<MovieSeatDTO> movieSeatDTOList(){
+        return userService.movieSeatDTOList();
+        }
+    @PostMapping("/booking")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<?> SaveBookingTicket(@Validated @RequestBody BookingTicketRequest bookingTicketRequest){
-        if (bookingTicketRequest.getMovie_showing_id() == 0 || bookingTicketRequest.getUser_id() == 0 || bookingTicketRequest.getSeats().isEmpty()) {
+        if (bookingTicketRequest.getMovie_showing_id() == 0 || bookingTicketRequest.getUsername() == null || bookingTicketRequest.getSeats().isEmpty()) {
             return ResponseEntity
                     .badRequest()
                     .body(new MessageResponse("Error: Thiếu Dữ kiện!"));
         }
 
-        String a = userService.SaveBooking(bookingTicketRequest.getMovie_showing_id(),bookingTicketRequest.getUser_id(),bookingTicketRequest.getSeats());
+        String a = userService.SaveBooking(bookingTicketRequest.getMovie_showing_id(),bookingTicketRequest.getUsername(),bookingTicketRequest.getSeats());
 
         return ResponseEntity.ok(new MessageResponse(a));
     }
 
-    @GetMapping("/choose_seat")
-    public List<MovieTicketDTO> movieTicketByUserId(){
-        return userService.movieTicketByUserId(1);
+
+
+    @GetMapping("/seat_sold/{id}")
+    public List<MovieSeatDTO> seatsSold(@PathVariable("id") int id){
+        return userService.listSoldTicket(id);
     }
 
-
+    @GetMapping("/ticket/{username}")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    public  List<MovieTicketDTO> movieTicketDTOList(@PathVariable("username") String username ){
+        return userService.movieTicketDTOList(username);
+    }
 }
